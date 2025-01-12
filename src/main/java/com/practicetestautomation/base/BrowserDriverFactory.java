@@ -24,20 +24,19 @@ public class BrowserDriverFactory {
 		log.info("Create driver: " + browser);
 
 		switch (browser) {
-			case "chrome":
+			case "chrome" -> {
 				System.setProperty(ChromeDriverService.CHROME_DRIVER_SILENT_OUTPUT_PROPERTY, "true");
 				driver.set(new ChromeDriver());
-				break;
-
-			case "firefox":
+			}
+			case "firefox" -> {
 				FirefoxOptions options = new FirefoxOptions();
 				driver.set(new FirefoxDriver(options));
-				break;
-			default:
+			}
+			default -> {
 				log.debug("Unknown browser: " + browser + ", starting chrome by default.");
 				System.setProperty(ChromeDriverService.CHROME_DRIVER_SILENT_OUTPUT_PROPERTY, "true");
 				driver.set(new ChromeDriver());
-				break;
+			}
 		}
 
 		// Suppress Selenium logs
